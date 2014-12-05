@@ -42,6 +42,8 @@ public class MainGameLoop {
 		DisplayManager.createDisplay();
 		Loader loader = new Loader();
 		
+		//hi
+		
 		/*------------------------------------------------------------------------
 		 * TERRAIN GENERATION
 		 * 	- rTexture = mud texture
