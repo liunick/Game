@@ -7,6 +7,9 @@ import entities.Camera;
 import entities.Light;
 import toolbox.Maths;
 
+//Float density = 0.005
+//Float gradient = 3
+
 public class StaticShader extends ShaderProgram{
 	
 	private static final String VERTEX_FILE = "src/shaders/vertexShader.txt";

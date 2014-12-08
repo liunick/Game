@@ -49,6 +49,7 @@ public class MasterRenderer {
 	
 	public static void enableCulling() {
 		GL11.glEnable(GL11.GL_CULL_FACE);		//These two lines of code essentially doesn't render anything that isn't facing camera
+		//GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_LINE); // Polygon mode
 		GL11.glCullFace(GL11.GL_BACK);			//So it improves rendering speed
 	}
 	
@@ -72,9 +73,6 @@ public class MasterRenderer {
 		terrainShader.stop();
 		terrains.clear();
 		entities.clear();
-		
-		
-		
 	}
 	
 	public void processTerrain(Terrain terrain) {
@@ -86,7 +84,6 @@ public class MasterRenderer {
 		List<Entity> batch = entities.get(entityModel);
 		if (batch != null) {
 			batch.add(entity);
-			
 		} else {
 			List<Entity> newBatch = new ArrayList<Entity>();
 			newBatch.add(entity);

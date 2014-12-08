@@ -13,8 +13,8 @@ import org.lwjgl.*;
 
 public class DisplayManager {
 
-	private static final int WIDTH = 1366; //1280 x 720
-	private static final int HEIGHT = 768;
+	private static final int WIDTH = 1600; //1280 x 720, 1366 x 768, 1600 x 900
+	private static final int HEIGHT = 900;
 	private static final int FPS_CAP = 120;
 	
 	private static long lastFrameTime;
@@ -33,13 +33,6 @@ public class DisplayManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		/*
-		GL11.glMatrixMode(GL11.GL_PROJECTION);
-		GL11.glLoadIdentity();
-		GL11.glOrtho(0, WIDTH, HEIGHT, 0, 1, -1);
-		GL11.glMatrixMode(GL11.GL_MODELVIEW);*/
-		
 		
 		GL11.glViewport(0, 0, WIDTH, HEIGHT);
 		lastFrameTime = getCurrentTime();

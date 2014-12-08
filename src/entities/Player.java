@@ -29,25 +29,16 @@ public class Player extends Entity{
 		super(model, position, rotX, rotY, rotZ, scale);
 	}
 
-	public void move(float[] terrainVerticies) {
-		/*heightVerticies = new float[terrainVerticies.length/3];
-		
-		for (int x = 1; x < terrainVerticies.length; x += 3) {
-			heightVerticies[x] = terrainVerticies[x];
-		}
-		*/
+	public void move(Terrain terrain) {
 		checkInputs();
-		checkTerrain(terrainVerticies);
-		//System.out.println(terrainVerticies[1]);
 		super.increaseRotation(0, currentTurnSpeed * DisplayManager.getFrameTimeSeconds(), 0);
 		float distance = currentSpeed * DisplayManager.getFrameTimeSeconds();
 		float dx = (float) (distance * Math.sin(Math.toRadians(super.getRotY())));
 		float dz = (float) (distance * Math.cos(Math.toRadians(super.getRotY())));
-		//float dy = (float) (distance)
 		super.increasePosition(dx, 0, dz);
-		//super.getPosition()
 		upwardsSpeed += GRAVITY * DisplayManager.getFrameTimeSeconds();
 		super.increasePosition(0, upwardsSpeed * DisplayManager.getFrameTimeSeconds(), 0);
+		terrainHeight = terrain.getHeightofTerrain(super.getPosition().x, super.getPosition().z);
 		if (super.getPosition().y > terrainHeight && upwardsSpeed == 0) {
 			upwardsSpeed = GRAVITY * DisplayManager.getFrameTimeSeconds();
 		}
@@ -60,85 +51,6 @@ public class Player extends Entity{
 	
 	private void jump() {
 		this.upwardsSpeed = JUMP_POWER;
-	}
-	
-	private void checkTerrain(float[] allVerticies) {
-		//800/255 = 3.1372549019607
-		//System.out.println(super.getPosition().x + ", " + super.getPosition().z);
-		/*
-		 * Let's create a diagram
-		 * say below is 1 terrain, with the coordinates of the terrain generation
-		 * 
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 800 px
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 0
-		 *0										800 px
-		 * 
-		 * x: 0 -> 800 px		z: 0 -> 800 px
-		 *
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa	
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 *aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-		 * x: 0 -> 800			z: -800 -> 0 px
-		 *
-		 *
-		 * V2.66.1 | verts: 16 | faces: 12 | Tris: 24 | Objects: 0.25 | Lamps: 0/1 | Mem:15.19M (0.11M) Cube
-		 * Blender cube format 
-		 * 
-		 * 				
-		 */
-		for (int y = 0; y < allVerticies.length; y++) {
-			int setBegin = 0;
-			for (int x = 0; x < allVerticies.length; x++) {
-				
-			}
-		}
-		
-		
-		/*for (int x = 2; x < allVerticies.length; x += 3) {
-			System.out.println(allVerticies[x-2] + ", " + allVerticies[x-1] + "," + allVerticies[x]);
-		}*/
-		
-		/*
-		for (int z = 2; z < allVerticies.length; z += 3) { //change to x
-			//System.out.println(super.getPosition().x + ", " + allVerticies[x]);
-			//800/255 = 3.1372549
-			// 800/256 = 3.125
-			if (allVerticies[z] < super.getPosition().x + 3.12 && allVerticies[z] > super.getPosition().x - 3.12) {
-				//System.out.println(allVerticies[x]);
-				//System.out.println(super.getPosition().x + ", " + allVerticies[x]);
-				//System.out.println("(" + allVerticies[x] + ", " + (super.getPosition().x + 3.12) + ")	(" + allVerticies[x] + ", " + (super.getPosition().x - 3.12) + ")");
-				for (int x = z - 2; x < allVerticies.length; x += 255) {
-					if (allVerticies[x] < super.getPosition().z + 3.12 && allVerticies[x] > super.getPosition().z - 3.12) {
-						//System.out.println()
-						terrainHeight = allVerticies[x+1];
-						//System.out.println(terrainHeight);
-						break;
-						//System.out.println(allVerticies[z-2] + ", " + terrainHeight + ", " + allVerticies[z]);
-						//System.out.println("(" + super.getPosition().x + ", " + super.getPosition().z + ")" + allVerticies[z-2] + ", " + terrainHeight + ", " + allVerticies[z]);
-						//System.out.println());
-					}
-				}
-			}
-		}*/
 	}
 	
 	private void checkInputs() {
